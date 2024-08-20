@@ -7,15 +7,15 @@ private:
 public:
     Fecha(int, int, int);
     ~Fecha();
-    void setDay();
-    void setMonth();
-    void setYear();
+    void setDay(int);
+    void setMonth(int);
+    void setYear(int);
     int getDay();
     int getMonth();
     int getYear();
-    validarFecha();
-    mesLetras();
-    imprimirFecha();
+    bool validarFecha(int, int, int);
+    std::string mesLetras();
+    void imprimirFecha();
 };
 
 #endif // CLASEFECHA_H_INCLUDED
