@@ -7,17 +7,17 @@ using namespace std;
 
 class Empleado{
 private:
-    string nombre, apellido;
+    char *nombre, *apellido;
     Fecha *nacimiento, *contratado;
 public:
-    Empleado();
+    Empleado();//modificar para que el constructor tome los valores en los parámetros
     ~Empleado();
-    void setNombre(string);
-    void setApellido(string);
+    void setNombre(char*); //modificar para que los datos almacenados estén en el heap
+    void setApellido(char*); //modificar para que los datos almacenados estén en el heap
     void setNacimiento(int, int, int);
     void setContratado(int, int, int);
-    string getNombre();
-    string getApellido();
+    char* getNombre();
+    char* getApellido();
     Fecha getNacimiento();
     Fecha getContratado();
     void imprimirEmpleado();

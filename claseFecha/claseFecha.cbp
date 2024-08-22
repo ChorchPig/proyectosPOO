@@ -35,6 +35,8 @@
 		<Unit filename="claseEmpleado.h" />
 		<Unit filename="claseFecha.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="metodosEmpleado.cpp" />
+		<Unit filename="metodosFecha.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
