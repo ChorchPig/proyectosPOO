@@ -6,7 +6,7 @@ private:
     int day, month, year;
 public:
     Fecha(int, int, int);
-    ~Fecha();
+    virtual ~Fecha();
     void setDay(int);
     void setMonth(int);
     void setYear(int);
