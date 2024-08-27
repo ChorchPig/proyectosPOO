@@ -5,8 +5,8 @@
 Empleado::Empleado(){
     nombre=new char[25];
     apellido=new char[25];
-    nacimiento=new Fecha(6, 4, 2006);
-    contratado=new Fecha(5, 12, 2019);
+    nacimiento=NULL;
+    contratado=NULL;
 }
 
 Empleado::~Empleado(){
@@ -18,17 +18,42 @@ Empleado::~Empleado(){
 
 void Empleado::setNombre(char* Nombre){ strcpy(nombre, Nombre); }
 void Empleado::setApellido(char* Apellido){ strcpy(apellido, Apellido); }
-void Empleado::setNacimiento(int dd, int mm, int aa){ nacimiento=new Fecha(dd, mm, aa); }
-void Empleado::setContratado(int dd, int mm, int aa){ contratado=new Fecha(dd, mm, aa); }
+void Empleado::setNacimiento(int dd, int mm, int aa){
+    if(!nacimiento)nacimiento=new Fecha(dd, mm, aa);
+    else{
+        nacimiento->setDay(dd);
+        nacimiento->setMonth(mm);
+        nacimiento->setYear(aa);
+    }
+}
+void Empleado::setContratado(int dd, int mm, int aa){
+    if(!contratado)contratado=new Fecha(dd, mm, aa);
+    else{
+        contratado->setDay(dd);
+        contratado->setMonth(mm);
+        contratado->setYear(aa);
+    }
+}
 
 Fecha Empleado::getNacimiento(){ return *nacimiento; }
 Fecha Empleado::getContratado(){ return *contratado; }
-char* Empleado::getNombre(){ return this->nombre; }
-char* Empleado::getApellido(){ return this->apellido; }
+char* Empleado::getNombre(){
+    char* str=new char[25];
+    strcpy(str, nombre);
+    return str;
+}
+char* Empleado::getApellido(){
+    char* str=new char[25];
+    strcpy(str, apellido);
+    return str;
+}
 
 void Empleado::imprimirEmpleado(){
-    cout<<"Nombre: "<<getNombre()<<endl;
-    cout<<"Apellido: "<<getApellido()<<endl;
+    char* str1=getNombre(), *str2=getApellido();
+    cout<<"Nombre: "<<str1<<endl;
+    cout<<"Apellido: "<<str2<<endl;
     cout<<"Nacimiento: "; getNacimiento().imprimirFecha();
     cout<<"Contratado: "; getContratado().imprimirFecha();
+    delete []str1;
+    delete []str2;
 }

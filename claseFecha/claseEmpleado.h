@@ -10,14 +10,14 @@ private:
     char *nombre, *apellido;
     Fecha *nacimiento, *contratado;
 public:
-    Empleado();//modificar para que el constructor tome los valores en los parámetros
+    Empleado();//crear otro constructor que asigne valores al ser invocado
     virtual ~Empleado();
-    void setNombre(char*); //modificar para que los datos almacenados estén en el heap
-    void setApellido(char*); //modificar para que los datos almacenados estén en el heap
+    void setNombre(char*);
+    void setApellido(char*);
     void setNacimiento(int, int, int);
     void setContratado(int, int, int);
-    char* getNombre();
-    char* getApellido();
+    char* getNombre(); //reserva memoria en el heap
+    char* getApellido(); //reserva memoria en el heap
     Fecha getNacimiento();
     Fecha getContratado();
     void imprimirEmpleado();
