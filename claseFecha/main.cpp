@@ -16,10 +16,10 @@ int main(){
     trabajador->setNacimiento(6, 5, 2006);
     trabajador->setContratado(5, 12, 2019);
     trabajador->imprimirEmpleado();
-    char* valorGetter=trabajador->getNombre();
-    cout<<valorGetter<<endl;
+    Fecha *diaActual=new Fecha(1, 1, 2020);
+    cout<<trabajador->calcularAntiguedad(*diaActual)<<endl;
     delete []str;
-    delete []valorGetter;
     delete trabajador;
+    delete diaActual;
     return 0;
 }

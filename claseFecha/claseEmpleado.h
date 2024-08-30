@@ -8,9 +8,9 @@ using namespace std;
 class Empleado{
 private:
     char *nombre, *apellido;
-    Fecha *nacimiento, *contratado;
+    Fecha nacimiento, contratado;
 public:
-    Empleado();//crear otro constructor que asigne valores al ser invocado
+    Empleado();
     virtual ~Empleado();
     void setNombre(char*);
     void setApellido(char*);
@@ -21,6 +21,7 @@ public:
     Fecha getNacimiento();
     Fecha getContratado();
     void imprimirEmpleado();
+    unsigned int calcularAntiguedad(const Fecha&);
 };
 
 

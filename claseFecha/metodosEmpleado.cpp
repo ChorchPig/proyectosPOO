@@ -1,42 +1,24 @@
 #include <iostream>
-#include<cstring>
+#include <cstring>
 #include "claseEmpleado.h"
 
 Empleado::Empleado(){
-    nombre=new char[25];
-    apellido=new char[25];
-    nacimiento=NULL;
-    contratado=NULL;
+    this->nombre=new char[25];
+    this->apellido=new char[25];
 }
 
 Empleado::~Empleado(){
     delete []nombre;
     delete []apellido;
-    delete nacimiento;
-    delete contratado;
 }
 
 void Empleado::setNombre(char* Nombre){ strcpy(nombre, Nombre); }
 void Empleado::setApellido(char* Apellido){ strcpy(apellido, Apellido); }
-void Empleado::setNacimiento(int dd, int mm, int aa){
-    if(!nacimiento)nacimiento=new Fecha(dd, mm, aa);
-    else{
-        nacimiento->setDay(dd);
-        nacimiento->setMonth(mm);
-        nacimiento->setYear(aa);
-    }
-}
-void Empleado::setContratado(int dd, int mm, int aa){
-    if(!contratado)contratado=new Fecha(dd, mm, aa);
-    else{
-        contratado->setDay(dd);
-        contratado->setMonth(mm);
-        contratado->setYear(aa);
-    }
-}
+void Empleado::setNacimiento(int dd, int mm, int aa){ this->nacimiento.setDatos(dd, mm, aa); }
+void Empleado::setContratado(int dd, int mm, int aa){ this->contratado.setDatos(dd, mm, aa); }
 
-Fecha Empleado::getNacimiento(){ return *nacimiento; }
-Fecha Empleado::getContratado(){ return *contratado; }
+Fecha Empleado::getNacimiento(){ return nacimiento; }
+Fecha Empleado::getContratado(){ return contratado; }
 char* Empleado::getNombre(){
     char* str=new char[25];
     strcpy(str, nombre);
@@ -56,4 +38,15 @@ void Empleado::imprimirEmpleado(){
     cout<<"Contratado: "; getContratado().imprimirFecha();
     delete []str1;
     delete []str2;
+}
+
+unsigned int Empleado::calcularAntiguedad(const Fecha& fechaActual){
+    unsigned int daysDif=0;
+    int dd=fechaActual.getDay(), mm=fechaActual.getMonth(), aa=fechaActual.getYear();
+    Fecha aux=contratado;
+    while(!aux.validarFecha(dd, mm, aa)){
+        daysDif++;
+        aux.agregarUnDia();
+    }
+    return daysDif;
 }
