@@ -15,22 +15,12 @@ void CRacional::setDenominador(int den){
     else denominador=den;
 }
 
-int CRacional::getNumerador(){ return numerador; }
-int CRacional::getDenominador(){ return denominador; }
-
-CRacional::CRacional(){
-    setNumerador(0);
-    setDenominador(1);
-}
+int CRacional::getNumerador()const{ return numerador; }
+int CRacional::getDenominador()const{ return denominador; }
 
 CRacional::CRacional(int num, int den){
     setNumerador(num);
     setDenominador(den);
-}
-
-CRacional::CRacional(int &referencia){
-    setNumerador(referencia);
-    setDenominador(1);
 }
 
 CRacional::~CRacional(){  }
@@ -46,100 +36,112 @@ istream& operator>>(istream& cin, CRacional &referencia){
     return cin;
 }
 
-ostream& operator<<(ostream& Cout, CRacional &referencia){
-    cout<<referencia.getDenominador()<<"/"<<referencia.getDenominador()<<endl;
+ostream& operator<<(ostream& Cout, const CRacional &referencia){
+    cout<<referencia.getNumerador()<<"/"<<referencia.getDenominador()<<endl;
     return Cout;
 }
 
-CRacional& CRacional::operator+(CRacional &valor){
-    CRacional *suma=new CRacional();
-    suma->setNumerador(numerador*valor.getDenominador()+valor.getNumerador()*denominador);
-    suma->setDenominador(denominador*valor.getDenominador());
-    return *suma;
+CRacional CRacional::operator+(const CRacional &valor){
+    CRacional suma;
+    suma.setNumerador(getNumerador()*valor.getDenominador()+valor.getNumerador()*getDenominador());
+    suma.setDenominador(getDenominador()*valor.getDenominador());
+    return suma;
 }
 
-CRacional& CRacional::operator-(CRacional &valor){
-    CRacional *resta=new CRacional();
-    resta->setNumerador(numerador*valor.getDenominador()-valor.getNumerador()*denominador);
-    resta->setDenominador(denominador*valor.getDenominador());
-    return *resta;
+CRacional operator+(const double numReal, const CRacional &valor){
+    CRacional resultado=valor; //falta calcular como corresponde el equivalente racional del double
+    return resultado;
 }
 
-CRacional& CRacional::operator*(CRacional &valor){
-    CRacional *producto=new CRacional();
-    producto->setNumerador(numerador*valor.getNumerador());
-    producto->setDenominador(denominador*valor.getDenominador());
-    return *producto;
+CRacional CRacional::operator-(const CRacional &valor){
+    CRacional resta;
+    resta.setNumerador(getNumerador()*valor.getDenominador()-valor.getNumerador()*getDenominador());
+    resta.setDenominador(getDenominador()*valor.getDenominador());
+    return resta;
 }
 
-CRacional& CRacional::operator/(CRacional &valor){
-    CRacional *resultado=new CRacional();
-    resultado->setNumerador(numerador*valor.getDenominador());
-    resultado->setDenominador(denominador*valor.getNumerador());
-    return *resultado;
+CRacional CRacional::operator-(){
+    CRacional copia=*this;
+    setNumerador(getNumerador()*(-1));
+    return copia;
 }
 
-CRacional& CRacional::operator=(CRacional &valor){
-    setNumerador(valor.getNumerador());
-    setDenominador(valor.getDenominador());
+CRacional CRacional::operator*(const CRacional &valor){
+    CRacional producto;
+    producto.setNumerador(getNumerador()*valor.getNumerador());
+    producto.setDenominador(getDenominador()*valor.getDenominador());
+    return producto;
+}
+
+CRacional CRacional::operator/(const CRacional &valor){
+    CRacional resultado;
+    resultado.setNumerador(getNumerador()*valor.getDenominador());
+    resultado.setDenominador(getDenominador()*valor.getNumerador());
+    return resultado;
+}
+
+CRacional& CRacional::operator=(const CRacional &valor){
+    if(this!=&valor){
+        setNumerador(valor.getNumerador());
+        setDenominador(valor.getDenominador());
+    }
     return *this;
 }
 
-CRacional& CRacional::operator+=(CRacional &valor){
-    setNumerador(numerador*valor.getDenominador()+valor.getNumerador()*denominador);
-    setDenominador(denominador*valor.getDenominador());
+CRacional& CRacional::operator+=(const CRacional &valor){
+    *this=*this+valor;
     return *this;
 }
 
-CRacional& CRacional::operator-=(CRacional &valor){
-    setNumerador(numerador*valor.getDenominador()-valor.getNumerador()*denominador);
-    setDenominador(denominador*valor.getDenominador());
+CRacional& CRacional::operator-=(const CRacional &valor){
+    *this=*this-valor;
     return *this;
 }
 
-CRacional& CRacional::operator*=(CRacional &valor){
-    setNumerador(numerador*valor.getNumerador());
-    setDenominador(denominador*valor.getDenominador());
-    return *this;
-
-}
-
-CRacional& CRacional::operator/=(CRacional &valor){
-    setNumerador(numerador/valor.getNumerador());
-    setDenominador(denominador*valor.getDenominador());
+CRacional& CRacional::operator*=(const CRacional &valor){
+    *this=(*this)*valor;
     return *this;
 }
 
-bool CRacional::operator==(CRacional &valor){
+CRacional& CRacional::operator/=(const CRacional &valor){
+    *this=*this/valor;
+    return *this;
+}
+
+bool CRacional::operator==(const CRacional &valor){
     int entero1, entero2;
-    entero1=numerador*valor.getDenominador();
-    entero2=denominador*valor.getNumerador();
+    entero1=getNumerador()*valor.getDenominador();
+    entero2=getDenominador()*valor.getNumerador();
     return (entero1==entero2);
 }
 
-bool CRacional::operator<(CRacional &valor){
+bool CRacional::operator<(const CRacional &valor){
     int entero1, entero2;
-    entero1=numerador*valor.getDenominador();
-    entero2=denominador*valor.getNumerador();
+    entero1=getNumerador()*valor.getDenominador();
+    entero2=getDenominador()*valor.getNumerador();
     return (entero1<entero2);
 }
 
-bool CRacional::operator>(CRacional &valor){
+bool CRacional::operator>(const CRacional &valor){
     int entero1, entero2;
-    entero1=numerador*valor.getDenominador();
-    entero2=denominador*valor.getNumerador();
+    entero1=getNumerador()*valor.getDenominador();
+    entero2=getDenominador()*valor.getNumerador();
     return (entero1>entero2);
 }
 
-//bool CRacional::operator!(CRacional&);
+bool CRacional::operator!(){
+    return (getNumerador()==0);
+}
+
 CRacional& CRacional::operator++(){
     setNumerador(getNumerador()+getDenominador());
     return *this;
 }
 
-CRacional& CRacional::operator++(int num){
-    setNumerador(getNumerador()+getDenominador());
-    return *this;
+CRacional CRacional::operator++(int num){
+    CRacional copia=*this;
+    copia.setNumerador(getNumerador()+getDenominador());
+    return copia;
 }
 
 CRacional& CRacional::operator--(){
@@ -147,7 +149,32 @@ CRacional& CRacional::operator--(){
     return *this;
 }
 
-CRacional& CRacional::operator--(int num){
-    setNumerador(getNumerador()-getDenominador());
-    return *this;
+CRacional CRacional::operator--(int num){
+    CRacional copia=*this;
+    copia.setNumerador(getNumerador()-getDenominador());
+    return copia;
 }
+
+CRacional::operator double(){
+    return static_cast<double>(getNumerador())/getDenominador();
+}
+
+//CRacional& CRacional::Simplificar(){
+// // Máximo común divisor. Algoritmo de Euclides
+// long mcd, temp, resto;
+// mcd = labs(numerador);
+// temp = denominador;
+// while (temp > 0)
+// {
+// resto = mcd % temp;
+// mcd = temp;
+// temp = resto;
+// }
+// // Simplificar
+// if (mcd > 1)
+// {
+// numerador /= mcd;
+// denominador /= mcd;
+// }
+// return *this;
+// }

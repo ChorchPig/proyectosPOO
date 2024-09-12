@@ -5,33 +5,34 @@ class CRacional{
 private:
     int numerador, denominador;
 public:
-    CRacional();
-    CRacional(int&);
-    CRacional(int, int);
+    friend std::istream& operator>>(std::istream&, CRacional&);
+    friend std::ostream& operator<<(std::ostream&, const CRacional&);
+    friend CRacional operator+(const double, const CRacional&);
+    CRacional(int num=0, int den=1);
     ~CRacional();
     void setNumerador(int);
     void setDenominador(int);
-    int getNumerador();
-    int getDenominador();
-    friend std::istream& operator>>(std::istream&, CRacional&);
-    friend std::ostream& operator<<(std::ostream&, CRacional&);
-    CRacional& operator+(CRacional&); //¿Hacen una gestión correcta de memoria estos operadores?
-    CRacional& operator-(CRacional&);
-    CRacional& operator*(CRacional&);
-    CRacional& operator/(CRacional&);
-    CRacional& operator=(CRacional&);
-    CRacional& operator+=(CRacional&);
-    CRacional& operator-=(CRacional&);
-    CRacional& operator*=(CRacional&);
-    CRacional& operator/=(CRacional&);
-    bool operator==(CRacional&);
-    bool operator<(CRacional&);
-    bool operator>(CRacional&);
-//    bool operator!(CRacional&);
+    int getNumerador()const;
+    int getDenominador()const;
+    CRacional operator+(const CRacional&);
+    CRacional operator-(const CRacional&);
+    CRacional operator-();
+    CRacional operator*(const CRacional&);
+    CRacional operator/(const CRacional&);
+    CRacional& operator=(const CRacional&);
+    CRacional& operator+=(const CRacional&);
+    CRacional& operator-=(const CRacional&);
+    CRacional& operator*=(const CRacional&);
+    CRacional& operator/=(const CRacional&);
+    bool operator==(const CRacional&);
+    bool operator<(const CRacional&);
+    bool operator>(const CRacional&);
+    bool operator!();
     CRacional& operator++();
-    CRacional& operator++(int);
+    CRacional operator++(int);
     CRacional& operator--();
-    CRacional& operator--(int);
+    CRacional operator--(int);
+    operator double();
 };
 
 #endif // CLASERACIONAL_H_INCLUDED
