@@ -36,6 +36,16 @@
 		<Unit filename="claseEmpresa.h" />
 		<Unit filename="claseFecha.h" />
 		<Unit filename="main.cpp" />
-		<Extensions />
+		<Unit filename="metodosEmpleado.cpp" />
+		<Unit filename="metodosEmpresa.cpp" />
+		<Unit filename="metodosFecha.cpp" />
+		<Unit filename="metodosGerente.cpp" />
+		<Unit filename="metodosPlantaPerm.cpp" />
+		<Unit filename="metodosPlantaTemp.cpp" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
