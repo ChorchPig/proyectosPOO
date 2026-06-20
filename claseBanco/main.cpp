@@ -1,4 +1,6 @@
-#include "claseCuenta.h"
+#include "claseCuenta.hpp"
+
+using namespace std;
 
 int main(){
     Cuenta nuevaCuenta=Cuenta("Manuel", 2000);

@@ -1,4 +1,6 @@
-#include "claseCuenta.h"
+#include "claseCuenta.hpp"
+
+using namespace std;
 
 cCorriente::cCorriente(string nombre, double monto, double limite){
     setTitular(nombre);

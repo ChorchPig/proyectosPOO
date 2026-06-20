@@ -1,5 +1,6 @@
-#include "claseCuenta.h"
+#include "claseCuenta.hpp"
 
+using namespace std;
 
 ostream& operator<<(ostream &Cout, const Cuenta &cuentaBanco){
     cout<<"Titular de la cuenta: "<<cuentaBanco.getTitular();

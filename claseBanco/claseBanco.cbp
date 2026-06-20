@@ -32,8 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="claseBanco.h" />
-		<Unit filename="claseCuenta.h" />
+		<Unit filename="claseBanco.hpp" />
+		<Unit filename="claseCuenta.hpp" />
 		<Unit filename="main.cpp" />
 		<Unit filename="metodosCAhorro.cpp" />
 		<Unit filename="metodosCCorriente.cpp" />

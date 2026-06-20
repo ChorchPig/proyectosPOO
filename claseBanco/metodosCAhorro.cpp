@@ -1,4 +1,6 @@
-#include "claseCuenta.h"
+#include "claseCuenta.hpp"
+
+using namespace std;
 
 cAhorro::cAhorro(string nombre, double monto){
     setTitular(nombre);

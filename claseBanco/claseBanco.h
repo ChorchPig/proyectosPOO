@@ -9,10 +9,10 @@ private:
     vector <Cuenta*>cuentas;
 public:
     Banco();
-    ~Banco();
-    void crearCuenta();
-    Cuenta* eliminarCuenta();
-    //Cuenta* getCuenta(string titular);
+    virtual ~Banco();
+    void crearCuenta(Cuenta* nuevaCuenta);
+    Cuenta* eliminarCuenta(string titular);
+    Cuenta* getCuenta(string titular);
     double calcularActivo();
 };
 

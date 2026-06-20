@@ -1,4 +1,4 @@
-#include "claseCuenta.h"
+#include "claseCuenta.hpp"
 
 //cUniversitaria::cUniversitaria(string nombre, double monto);
 //cUniversitaria::~cUniversitaria();
