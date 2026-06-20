@@ -1,21 +1,19 @@
 #include "claseFactura.h"
 
-Factura::Factura(string contribuyente, string ID, string cliente, double monto){
-    setContribuyente(contribuyente);
-    setCliente(cliente);
-    setMonto(monto);
+using namespace std;
+
+Factura::Factura(string serv, int numFac, double montoFac){
+    setServicio(serv);
+    setNumFactura(numFac);
+    setMonto(montoFac);
 }
 
 Factura::~Factura(){  }
 
-void Factura::setContribuyente(string nombreCont){ contribuyente=nombreCont; }
-string Factura::getContribuyente()const{ return contribuyente; }
+void Factura::setServicio(string serv){ servicio=serv; }
+void Factura::setNumFactura(int numFac){ numFactura=numFac; }
+void Factura::setMonto(double mont){ monto=mont; }
 
-void Factura::setCliente(string nombreCli){ cliente=nombreCli; }
-string Factura::getCliente()const{ return cliente; }
-
-void Factura::setID(string facID){ ID=facID; }
-string Factura::getID()const{ return ID; }
-
-void Factura::setMonto(double montoFacturado){ monto=montoFacturado; }
+string Factura::getServicio()const{ return servicio; }
+int Factura::getNumFactura()const{ return numFactura; }
 double Factura::getMonto()const{ return monto; }

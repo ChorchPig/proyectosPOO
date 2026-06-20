@@ -3,26 +3,21 @@
 
 #include <iostream>
 
-using namespace std;
-
-class Recibo{
+class ReciboDePago{
 private:
-    string nombreContribuyente;
-    double montoTotal, montoFijo, montoVariable;
+    std::string nombreContribuyente;
+    double montoFijo, montoVariable;
+    int primFactura, ultFactura;
 public:
-    Recibo(string contribuyenye="\0", double total=0.0, double fijo=0.0, double variable=0.0);
-    virtual ~Recibo();
-    void setNombre(string);
-    string getNombre();
-    void setMontoTotal(double);
-    double getMontoTotal()const;
-    void setMontoFijo(double);
+    ReciboDePago(std::string nombre="\0", double montoFijo=0, double montoVariable=0, int primera=0, int ultima=0);
+    virtual ~ReciboDePago();
+    std::string nombreDelContribuyente()const;
     double getMontoFijo()const;
-    void setMontoVar(double);
-    double getMontoVar()const;
-
-//    void getPrimeraFactura()const;
-//    void getUltimaFactura()const;
+    double getMontoVariable()const;
+    double getMontoTotal()const;
+    int primeraFacturaConsiderada()const;
+    int ultimaFacturaConsiderada()const;
 };
+
 
 #endif // CLASERECIBO_H_INCLUDED

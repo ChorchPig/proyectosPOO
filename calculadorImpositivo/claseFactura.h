@@ -3,23 +3,19 @@
 
 #include <iostream>
 
-using namespace std;
-
 class Factura{
 private:
-    string contribuyente, ID, cliente;
+    std::string servicio;
+    int numFactura;
     double monto;
-//    Fecha de emisión
 public:
-    Factura(string contribuyente="\0", string ID="\0", string cliente="\0", double monto=0.0);
+    Factura(std::string serv="\0", int numFac=0, double montoFac=0.0);
     virtual ~Factura();
-    void setContribuyente(std::string);
-    std::string getContribuyente()const;
-    void setCliente(std::string);
-    std::string getCliente()const;
-    void setID(std::string);
-    std::string getID()const;
+    void setServicio(std::string);
+    void setNumFactura(int);
     void setMonto(double);
+    std::string getServicio()const;
+    int getNumFactura()const;
     double getMonto()const;
 };
 

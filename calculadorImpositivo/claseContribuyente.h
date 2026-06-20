@@ -1,45 +1,50 @@
 #ifndef CLASECONTRIBUYENTE_H_INCLUDED
 #define CLASECONTRIBUYENTE_H_INCLUDED
 
-#include "claseRecibo.h"
 #include "claseFactura.h"
 #include <vector>
-#define MONTOFIJO 5
+
+enum{
+    LIMITADO=1, COMPLETO=2, EXTENDIDO=3
+};
 
 class Contribuyente{
-private:
-    string nombre;
-    vector <Factura*>facturas;
+    double impuestoFijo=5.0;
+protected:
+    std::string nombre;
+    std::vector <Factura*> facturas;
 public:
-    Contribuyente();
+    Contribuyente(std::string nombre="\0");
     virtual ~Contribuyente();
+    double calcularMontoFijo(int numFac1, int numFac2);
+    virtual double calcularMontoVariable(int numFac1, int numFac2)=0;
     void agregarFactura(Factura*);
-    Factura* eliminarFactura(string facID);
-    Factura* getFactura(string facturaID);
-    double calcularMontoFijo();
-    virtual double calcularMontoVar()=0;
-    Recibo calcularImpuestosTotales();
+    Factura* eliminarFactura(int numFactura);
+//    Factura* getFactura(int numFactura)const;
+    std::string getNombre()const;
 };
 
 class Limitado: public Contribuyente{
 public:
-    Limitado();
+    Limitado(std::string nombre="\0");
     virtual ~Limitado();
-    virtual double calcularMontoVar();
+    virtual double calcularMontoVariable(int numFac1, int numFac2);
 };
 
 class Completo: public Contribuyente{
 public:
-    Completo();
+    Completo(std::string nombre="\0");
     virtual ~Completo();
-    virtual double calcularMontoVar();
+    virtual double calcularMontoVariable(int numFac1, int numFac2);
 };
 
 class Extendido: public Completo{
+private:
+    double impuestoExtendido=10.0;
 public:
-    Extendido();
+    Extendido(std::string nombre="\0");
     virtual ~Extendido();
-    virtual double calcularMontoVar();
+    virtual double calcularMontoVariable(int numFac1, int numFac2);
 };
 
 #endif // CLASECONTRIBUYENTE_H_INCLUDED

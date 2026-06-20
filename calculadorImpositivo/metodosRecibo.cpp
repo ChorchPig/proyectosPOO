@@ -1,24 +1,23 @@
 #include "claseRecibo.h"
 
-Recibo::Recibo(string contribuyenye, double total, double fijo, double variable){
-    setNombre(contribuyenye);
-    setMontoFijo(fijo);
-    setMontoTotal(total);
-    setMontoVar(variable);
+using namespace std;
+
+ReciboDePago::ReciboDePago(string nombre, double mFijo, double mVariable, int primera, int ultima){
+    nombreContribuyente=nombre;
+    montoFijo=mFijo;
+    montoVariable=mVariable;
+    primFactura=primera;
+    ultFactura=ultima;
 }
-Recibo::~Recibo(){  }
 
-void Recibo::setNombre(string nombreContri){ nombreContribuyente=nombreContri; }
-string Recibo::getNombre(){ return this->nombreContribuyente; }
+ReciboDePago::~ReciboDePago(){  }
 
-void Recibo::setMontoTotal(double total){ montoTotal=total; }
-double Recibo::getMontoTotal()const{ return montoTotal; }
+string ReciboDePago::nombreDelContribuyente()const{ return nombreContribuyente; }
+double ReciboDePago::getMontoFijo()const{ return montoFijo; }
+double ReciboDePago::getMontoVariable()const{ return montoVariable; }
+double ReciboDePago::getMontoTotal()const{
+    return getMontoFijo()+getMontoVariable();
+}
 
-void Recibo::setMontoFijo(double fijo){ montoFijo=fijo; }
-double Recibo::getMontoFijo()const{ return montoFijo; }
-
-void Recibo::setMontoVar(double variable){ montoVariable=variable; }
-double Recibo::getMontoVar()const{ return montoVariable; }
-
-//    void getPrimeraFactura()const;
-//    void getUltimaFactura()const;
+int ReciboDePago::primeraFacturaConsiderada()const{ return primFactura; }
+int ReciboDePago::ultimaFacturaConsiderada()const{ return ultFactura; }

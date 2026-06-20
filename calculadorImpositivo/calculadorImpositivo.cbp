@@ -32,10 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="claseCalculador.h" />
 		<Unit filename="claseContribuyente.h" />
 		<Unit filename="claseFactura.h" />
 		<Unit filename="claseRecibo.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="metodosCalculador.cpp" />
 		<Unit filename="metodosContribuyente.cpp" />
 		<Unit filename="metodosFactura.cpp" />
 		<Unit filename="metodosRecibo.cpp" />
