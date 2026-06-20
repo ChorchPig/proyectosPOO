@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <iostream>
+#define PI 3.141592
 
 using namespace std;
 
@@ -14,7 +15,7 @@ public:
     friend ostream& operator<<(ostream&, Complejos&);
     Complejos(float real=0.0, float img=0.0);
     virtual ~Complejos();
-    void setDatos(float, float);
+    void setDatos(float real, float img);
     float getCompReal()const;
     float getCompImaginario()const;
     float calcularModulo()const;
@@ -29,26 +30,33 @@ public:
     Complejos& operator*=(const Complejos&);
     Complejos& operator/=(const Complejos&);
     bool operator==(const Complejos&);
-    bool operator>(const Complejos&);
+    bool operator>(const Complejos&);//Compara módulos
     bool operator>=(const Complejos&);
-    bool operator<(const Complejos&);
+    bool operator<(const Complejos&);//Compara módulos
     bool operator<=(const Complejos&);
     bool operator!();
 };
 
 class Polar : public Complejos{
 public:
-    friend Complejos RecTan(float, float);
-    Polar(float num1=0, float num2=0);
-    ~Polar();
+    friend istream& operator>>(istream&, Polar&);
+    friend ostream& operator<<(ostream&, Polar&);
+    friend Complejos RecTan(float mod, float fas);
+    //Pasa los datos de la notación polar a la binaria
+    Polar(float modulo=0, float fase=0);
+    virtual ~Polar();
     void setModulo(float);
     void setFase(float);
     float getModulo()const;
     float getFase()const;
     float Modulo(const Complejos&)const;
+    //Obtiene el módulo del complejo pasado
     float Fase(const Complejos&)const;
+    //Obtiene la fase del complejo pasado
     Polar& operator=(const Polar&);
     Polar& operator=(const Complejos&);
+    //La sobrecarga de los operadores * y / serían más eficientes si se usa la notacin polar
+    //Los operadores aritmticos no actualizan los valores de la notación polar
 private:
     float modulo, fase;
 };
